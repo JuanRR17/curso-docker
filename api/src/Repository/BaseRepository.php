@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\Mapping\MappingException;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ObjectRepository;
@@ -69,7 +70,7 @@ abstract class BaseRepository
     }
 
     /**
-     * @throws DBALException
+     * @throws Exception
      */
     protected function executeFetchQuery(string $query, array $params = []): array
     {
@@ -77,7 +78,7 @@ abstract class BaseRepository
     }
 
     /**
-     * @throws DBALException
+     * @throws Exception
      */
     protected function executeQuery(string $query, array $params = []): void
     {
