@@ -1,6 +1,19 @@
 version: '3.5'
 
 services:
+
+  phpmyadmin:
+      container_name: phpmyadmin
+      image: phpmyadmin/phpmyadmin
+      environment:
+          PMA_HOST: symfony-api-platform-db
+      restart: always
+      ports:
+          - 9080:80
+      networks:
+        - symfony-api-platform-network
+
+
   symfony-api-platform-web:
     container_name: symfony-api-platform-web
     build:
