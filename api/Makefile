@@ -51,7 +51,5 @@ code-style: ## Runs php-cs to fix code styling following Symfony rules
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} php-cs-fixer fix src --rules=@Symfony
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} php-cs-fixer fix tests --rules=@Symfony
 
-generate-ssh-keys: ## Generates SSH keys for the JWT library
-	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} mkdir -p config/jwt
-	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} openssl genrsa -passout pass:8b1df0dfc1b7e67f2bd8ee81309092a6 -out config/jwt/private.pem -aes256 4096
-	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} openssl rsa -pubout -passin pass:8b1df0dfc1b7e67f2bd8ee81309092a6 -in config/jwt/private.pem -out config/jwt/public.pem
+generate-ssl-keys: ## Generates SSL keys for the JWT library
+	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} bin/console lexik:jwt:generate-keypair
