@@ -18,11 +18,11 @@ class ActivateAccountService
         $this->userRepository = $userRepository;
     }
 
-    public function activate(Request $request, string $id): User
+    public function activate(string $id, string $token): User
     {
         $user = $this->userRepository->findOneInactiveByIdAndTokenOrFail(
             $id,
-            RequestService::getField($request, 'token')
+            $token)
         );
 
         $user->setActive(true);
